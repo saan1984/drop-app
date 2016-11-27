@@ -17,15 +17,16 @@ app.use(express.static('.'));
 app.use( bodyParser.json({limit: '1mb'}) );
 
 app.post('/pdf', function(req, res){
-    var name = req.body.name;
+    console.log( req.body.data);
+
     var pdf = req.body.data;
 
-    var pdf = pdf.replace('data:application/pdf;base64,', '');
+   var pdf = pdf.replace('data:application/pdf;base64,', '');
 
     res.send('received');
-    fs.writeFile(name, pdf, 'base64', function(err) {
+   /* fs.writeFile(name, pdf, 'base64', function(err) {
         console.log(err);
-    });
+    });*/
 });
 
 var server = app.listen(3000, function() {
