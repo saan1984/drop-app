@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .drop{
+                height:700px;
+                width:700px;
+                background-color: #3e6cc9;
+            }
+        </style>
+
+    </head>
+<body>
+
+<script>
+    function readFile(file) {
+        var reader = new FileReader();
+        reader.addEventListener("loadend", function(evt) {
+            //upload.post({name: file.name, data: reader.result})
+            console.log("name", file.name);
+            console.log("data", reader.result);
+        })
+        if(reader.type = 'application/pdf') {
+            reader.readAsDataURL(file);
+        }
+    }
+    function dropFile(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var files = e.dataTransfer.files;
+        console.log("Drop files", files[0]);
+        readFile(files[0])
+
+    }
+    function allowDrop(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'copy'
+    }
+</script>
+
+<div class="drop" ondrop="dropFile(event)" ondragover="allowDrop(event)"></div>
+
+</body>
+</html>
