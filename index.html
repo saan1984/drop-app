@@ -8,7 +8,10 @@
                 background-color: #3e6cc9;
             }
         </style>
-
+        <script
+                src="https://code.jquery.com/jquery-3.1.1.min.js"
+                integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                crossorigin="anonymous"></script>
     </head>
 <body>
 
@@ -19,10 +22,7 @@
             //upload.post({name: file.name, data: reader.result})
             console.log("name", file.name);
             console.log("data", reader.result);
-            fetch('/pdf', {
-                method: 'post',
-                body: JSON.stringify({data: reader.result})
-            });
+            $.post('/pdf',{name: file.name, data: reader.result})
         })
         if(reader.type = 'application/pdf') {
             reader.readAsDataURL(file);
