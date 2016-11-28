@@ -22,7 +22,7 @@ app.post('/pdf', function(req, res){
        let pdfParser = new PDFParser();
        pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
        pdfParser.on("pdfParser_dataReady", pdfData => {
-           res.send(JSON.stringify(pdfData));
+           res.send(JSON.stringify(pdfData.formImage.Pages[0].Texts));
        });
         pdfParser.loadPDF(name);
     });
